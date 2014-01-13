@@ -3,7 +3,7 @@ Vagrant built mCollective Test/Dev Environment
 ### Using Packer, Vagrant, Chef, RabbitMQ & mCollective
 ---
 
-I was recenly tasked with an automation project by my employer. This project was to automate the execution of a huge collection of scripts across servers in different hosting environments, from Amazon AWS to Development VMs on interally hosted Xen servers, and to allow them to be executed by anyone in the business from any location.
+I recenly started a project to automate the execution of a huge collection of scripts across servers in different hosting environments, from Amazon AWS to Development VMs on interally hosted Xen servers, and to allow them to be executed by anyone in the business from any location.
 
 I decided to write some automation tools based on the [mCollective](http://puppetlabs.com/mcollective) framework to allow me to be able to retrieve information and execute commands no matter where they were (as long as they could all talk to the same message queue of course).
 
