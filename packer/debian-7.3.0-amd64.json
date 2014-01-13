@@ -1,0 +1,62 @@
+{
+  "builders": [{
+    "type": "virtualbox-iso",
+    "virtualbox_version_file": ".vbox_version",
+    "headless": false,
+
+    "guest_os_type": "Debian_64",
+    "disk_size": 40960,
+
+    "iso_url": "http://cdimage.debian.org/debian-cd/7.3.0/amd64/iso-cd/debian-7.3.0-amd64-netinst.iso",
+    "iso_checksum": "545f2c5ce99d64ec169156436fe596a580cb6047",
+    "iso_checksum_type": "sha1",
+
+    "boot_command": [
+       "<esc><wait>",
+       "install ",
+       "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/debian-7.3.0-amd64/preseed.cfg ",
+       "debian-installer=en_GB ",
+       "auto ",
+       "locale=en_GB ",
+       "netcfg/get_hostname={{ .Name }} ",
+       "netcfg/get_domain=lumux.co.uk ",
+       "kbd-chooser/method=uk ",
+       "fb=false ",
+       "debconf/frontend=noninteractive ",
+       "console-setup/ask_detect=false ",
+       "console-keymaps-at/keymap=uk ",
+       "keyboard-configuration/xkb-keymap=uk ",
+       "<enter><wait>"
+    ],
+    "boot_wait": "5s",
+
+    "http_directory": "http",
+    "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
+
+    "ssh_username": "vagrant",
+    "ssh_password": "vagrant",
+    "ssh_port": 22,
+    "ssh_wait_timeout": "10000s",
+
+    "vboxmanage": [
+      ["modifyvm", "{{.Name}}", "--memory", "2048"],
+      ["modifyvm", "{{.Name}}", "--cpus", "4"]
+    ],
+
+    "shutdown_command": "echo 'vagrant'|sudo -S /sbin/halt -h -p"
+  }],
+  "post-processors": [{
+    "output": "build/debian-7.3.0-amd64.box",
+    "type": "vagrant"
+  }],
+  "provisioners": [{
+    "type": "shell",
+    "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+    "scripts": [
+      "scripts/vagrant.sh",
+      "scripts/vboxguest.sh",
+      "scripts/chef-client.sh",
+      "scripts/compact.sh"
+    ]
+  }]
+}

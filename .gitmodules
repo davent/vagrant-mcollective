@@ -1,0 +1,21 @@
+[submodule "cookbooks/mcollective"]
+	path = cookbooks/mcollective
+	url = https://github.com/davent/cookbook-mcollective.git
+[submodule "cookbooks/apt"]
+	path = cookbooks/apt
+	url = https://github.com/opscode-cookbooks/apt.git
+[submodule "cookbooks/build-essential"]
+	path = cookbooks/build-essential
+	url = https://github.com/opscode-cookbooks/build-essential.git
+[submodule "cookbooks/chef_handler"]
+	path = cookbooks/chef_handler
+	url = https://github.com/opscode-cookbooks/chef_handler.git
+[submodule "cookbooks/erlang"]
+	path = cookbooks/erlang
+	url = https://github.com/opscode-cookbooks/erlang.git
+[submodule "cookbooks/rabbitmq"]
+	path = cookbooks/rabbitmq
+	url = https://github.com/davent/rabbitmq.git
+[submodule "cookbooks/yum"]
+	path = cookbooks/yum
+	url = https://github.com/opscode-cookbooks/yum.git
