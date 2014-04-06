@@ -23,28 +23,38 @@ I have included everything required to achieve this development and testing envi
 
 You will need:
 
-* VirtualBox (tested with 4.2.12)
-* [Vagrant](http://www.vagrantup.com/downloads.html) (tested on 1.4.1)
-* [Packer](http://www.packer.io/downloads.html) (tested on 0.5.1)
+* VirtualBox (tested with 4.3.10)
+* [Vagrant](http://www.vagrantup.com/downloads.html) (tested on 1.5.2)
+* [Packer](http://www.packer.io/downloads.html) (tested on 0.5.2)
 
 Once you have installed VirtualBox (not covered in these instructions), downloaded the Vagrant install package and the packer binary zip, make sure Vagrant is installed and working
 ```bash
-$ sudo dpkg -i /home/davent/Downloads/vagrant_1.4.1_x86_64.deb
+$ sudo dpkg -i /home/davent/Downloads/vagrant_1.5.2_x86_64.deb
 $ vagrant -v
-Vagrant 1.4.1
+Vagrant 1.5.2
+
+On Mac OSX download vagrant and install from dpkg package
 ```
 check out the project files and change in to the working directoy
 ```bash
-$ git clone --recursive git@bitbucket.org:davent/vagrant-mcollective.git
+$ git clone --recursive https://github.com/davent/vagrant-mcollective.git
 $ cd vagrant-mcollective
 ```
 unzip the packer binaries in to the packer/bin directory and then from the packer directory build the Vagrant box using packer
 ```bash
-$ unzip /home/davent/Downloads/0.4.1_linux_amd64.zip -d packer/bin
+$ unzip /home/davent/Downloads/0.5.2_linux_amd64.zip -d packer/bin
 $ cd packer
 $ ./bin/packer build centos-6.5-x86_64.json
 (or)
-$ ./bin/packer build debian-7.3.0-amd64.json
+$ ./bin/packer build debian-7.4.0-amd64.json
+
+On Mac OSX 
+$ brew install homebrew/binary/packer
+$ cd packer
+$ packer build centos-6.5-x86_64.json
+(or)
+$ packer build debian-7.4.0-amd64.json
+
 ```
 we should now have a Centos 6.5 or a Debian Wheezy Vagrant box in the build directory which Vagrant can use.
 
